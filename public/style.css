@@ -1,0 +1,5 @@
+body { font-family: Arial, sans-serif; padding: 20px; }
+h1 { color: #333; }
+input, textarea { display: block; margin: 10px 0; width: 300px; }
+button { margin: 5px; }
+div { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
