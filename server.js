@@ -91,4 +91,4 @@ app.delete('/notes/:id', async (req, res) => {
     }
 });
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}`));console.log('Pipeline test');
