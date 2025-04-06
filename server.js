@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const app = express();
 const port = 8080;
 
-const client = new DynamoDBClient({ region: 'us-east-1' });
+const client = new DynamoDBClient({ region: 'us-west-1' });
 const docClient = DynamoDBDocumentClient.from(client);
 const tableName = 'Notes';
 
