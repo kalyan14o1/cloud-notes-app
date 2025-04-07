@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
 const { DynamoDBDocumentClient, PutCommand, ScanCommand, UpdateCommand, DeleteCommand } = require('@aws-sdk/lib-dynamodb');
 const crypto = require('crypto');
@@ -93,6 +94,6 @@ app.delete('/notes/:id', async (req, res) => {
 
 app.listen(port, () => console.log(`Server running on port ${port}`));console.log('Pipeline test');
 app.get('/', (req, res) => res.send('CloudNotes CI/CD Success!'));
+app.get('/notes.html', (req, res) => res.sendFile('notes.html', { root: 'public' }));
 console.log('CI/CD with encryption');
 app.listen(process.env.PORT || 8080, () => console.log('Server running on port 8080'));
-

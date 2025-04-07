@@ -1,4 +1,5 @@
-const SECRET_KEY = 'Chunmun@14'; 
+const SECRET_KEY = 'Chunmun@14';
+const VIEW_PASSWORD_HASH = CryptoJS.SHA256('Chunmun@14').toString(); 
 
 function encrypt(text) {
     console.log('Encrypting:', text);
@@ -15,16 +16,38 @@ function decrypt(ciphertext) {
     return decrypted;
 }
 
+function showPasswordModal() {
+    document.getElementById('passwordModal').style.display = 'block';
+}
+
+function hidePasswordModal() {
+    document.getElementById('passwordModal').style.display = 'none';
+    document.getElementById('viewPassword').value = '';
+}
+
+function checkPassword() {
+    const password = document.getElementById('viewPassword').value;
+    if (password) {
+        const hashedInput = CryptoJS.SHA256(password).toString();
+        if (hashedInput === VIEW_PASSWORD_HASH) {
+            window.location.href = '/notes.html';
+        } else {
+            alert('Incorrect password!');
+        }
+        hidePasswordModal();
+    }
+}
+
 function addNote() {
-    const title = document.getElementById('noteTitle').value;
-    const content = document.getElementById('noteContent').value;
-    if (title && content) {
-        const encryptedContent = encrypt(content);
-        const note = { id: Date.now(), title, content: encryptedContent };
+    const title = document.getElementById('noteTitle');
+    const content = document.getElementById('noteContent');
+    if (title && content && title.value && content.value) {
+        const encryptedContent = encrypt(content.value);
+        const note = { id: Date.now(), title: title.value, content: encryptedContent };
         saveNote(note);
-        displayNotes();
-        document.getElementById('noteTitle').value = '';
-        document.getElementById('noteContent').value = '';
+        title.value = '';
+        content.value = '';
+        if (window.location.pathname === '/notes.html') displayNotes();
     }
 }
 
@@ -58,6 +81,7 @@ function deleteNote(id) {
 
 function displayNotes() {
     const notesList = document.getElementById('notesList');
+    if (!notesList) return;
     notesList.innerHTML = '';
     const notes = JSON.parse(localStorage.getItem('notes') || '[]');
     notes.forEach(note => {
