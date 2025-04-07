@@ -93,6 +93,6 @@ app.delete('/notes/:id', async (req, res) => {
 
 app.listen(port, () => console.log(`Server running on port ${port}`));console.log('Pipeline test');
 app.get('/', (req, res) => res.send('CloudNotes CI/CD Success!'));
-console.log('S3 Pipeline test');
+console.log('CI/CD with encryption');
 app.listen(process.env.PORT || 8080, () => console.log('Server running on port 8080'));
-console.log('CI/CD test');
+

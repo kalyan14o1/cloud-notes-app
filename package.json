@@ -13,6 +13,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.782.0",
     "@aws-sdk/lib-dynamodb": "^3.782.0",
+    "crypto-js": "^4.2.0",
     "express": "^5.1.0"
   },
   "devDependencies": {

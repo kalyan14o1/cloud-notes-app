@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Notes App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypted Notes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Encrypted Notes</h1>
-    <input id="title" placeholder="Note Title">
-    <textarea id="content" placeholder="Note Content"></textarea>
-    <button onclick="createNote()">Add Note</button>
-    <div id="notes"></div>
+    <div class="note-container">
+        <input type="text" id="noteTitle" placeholder="Note Title">
+        <textarea id="noteContent" placeholder="Note Content" rows="4"></textarea>
+        <button onclick="addNote()">Add Note</button>
+        <div id="notesList"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
