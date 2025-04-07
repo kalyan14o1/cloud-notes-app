@@ -1,0 +1,57 @@
+{
+  "pipeline": {
+    "name": "x23419491-CloudNotesPipeline",
+    "roleArn": "arn:aws:iam::250738637992:role/service-role/AWSCodePipelineServiceRole-eu-west-1-test-pipeline",
+    "artifactStore": {
+      "type": "S3",
+      "location": "codepipeline-eu-west-1-869293753066"
+    },
+    "stages": [
+      {
+        "name": "Source",
+        "actions": [
+          {
+            "name": "Source",
+            "actionTypeId": {
+              "category": "Source",
+              "owner": "AWS",
+              "provider": "S3",
+              "version": "1"
+            },
+            "configuration": {
+              "S3Bucket": "x23419491-source-eu-west-1",
+              "S3ObjectKey": "x23419491-cloud-notes-app.zip",
+              "PollForSourceChanges": "true"
+            },
+            "outputArtifacts": [
+              { "name": "SourceArtifact" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Deploy",
+        "actions": [
+          {
+            "name": "Deploy",
+            "actionTypeId": {
+              "category": "Deploy",
+              "owner": "AWS",
+              "provider": "ElasticBeanstalk",
+              "version": "1"
+            },
+            "configuration": {
+              "ApplicationName": "CloudNotesApp",
+              "EnvironmentName": "CloudNotesEnv"
+            },
+            "inputArtifacts": [
+              { "name": "SourceArtifact" }
+            ]
+          }
+        ]
+      }
+    ],
+    "version": 2,
+    "executionMode": "QUEUED"
+  }
+}
